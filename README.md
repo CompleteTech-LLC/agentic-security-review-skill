@@ -69,6 +69,29 @@ python3 scripts/render_security_review.py \
 
 Rendered artifacts are drafts. Replace placeholders with verified workflow, data, tool, permission, credential, approval, logging, rollback, and incident-response details before use.
 
+## Example
+
+![Launch blocker review preview](assets/examples/example.png)
+
+**Launch blocker review: External-support reply workflow**
+
+```bash
+python3 scripts/render_security_review.py \
+  --template launch-blocker-checklist \
+  --var client_name="Northstar Support" \
+  --var workflow="support triage agent" \
+  --var external_action="drafting customer-facing replies for human approval" \
+  --var data_classification="customer support tickets with account context" \
+  --var approval_gate="support lead approval required before send"
+```
+
+Example review outcome:
+
+- Launch blocker: unresolved retention policy for ticket excerpts.
+- Required approval: named support lead must approve external replies before send.
+- Residual risk: prompt-injection attempts in customer-provided text require evaluator examples and reviewer training.
+- Handoff: delivery can continue on internal testing; production launch waits for blocker resolution.
+
 ## Brand Notes
 
 Use a direct, concrete, low-hype tone. Present security review as practical risk reduction for bounded agentic workflow implementation: name the access, verify the evidence, protect human approvals, limit permissions, document logs, define rollback, and make launch blockers explicit. Do not claim formal compliance, certification, legal approval, penetration-test completion, production readiness, or guaranteed security unless verified evidence is provided.
