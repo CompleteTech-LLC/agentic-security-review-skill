@@ -2,6 +2,24 @@
 
 A CompleteTech LLC Codex skill for creating security, safety, permissions, and production-readiness review artifacts for agentic development workflows.
 
+## Workflow Diagram
+
+```mermaid
+flowchart LR
+  A[Workflow or change event] --> B[Tools, data, credentials, and actions]
+  B --> C[Risk review artifact]
+  C --> D[Controls, logs, approvals, and rollback]
+  D --> E{Launch blocked?}
+  E -->|Yes| F[Blockers and remediation]
+  E -->|No| G[Security signoff memo]
+  classDef source fill:#eef6ff,stroke:#3778c2,color:#102a43;
+  classDef gate fill:#fff7e6,stroke:#c97a12,color:#3d2600;
+  classDef output fill:#eefaf0,stroke:#2f8f46,color:#12351d;
+  class A,B,C,D source;
+  class E gate;
+  class F,G output;
+```
+
 ## What It Does
 
 - Selects the right review artifact by launch event, tool change, data exposure, credential change, retrieval source, external action, incident, or signoff need.

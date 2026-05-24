@@ -9,6 +9,10 @@ description: Create CompleteTech LLC security, safety, permissions, and producti
 
 Create practical security review artifacts for CompleteTech LLC agentic development workflows. Use this skill before launch, before granting new access, after material configuration changes, and after incidents or near misses.
 
+## System Boundary
+
+This skill owns security, safety, permissions, data, credential, tool, and launch-risk review. Use it alongside discovery, proposal, or delivery when risk needs a dedicated artifact. It does not replace `agentic-delivery-skill` launch checklists, `agentic-contract-skill` legal terms, external compliance certification, formal penetration testing, or counsel-reviewed privacy/security advice.
+
 ## Core Workflow
 
 1. Identify the review event: launch, new tool, sensitive data, external action, retrieval/RAG, credential change, dependency change, incident, or signoff.
