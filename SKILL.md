@@ -86,16 +86,17 @@ Rendered artifacts are drafts. Replace placeholders with verified project facts 
 
 ## Rendering to a Branded PDF
 
-Artifacts from this skill are delivered as branded CompleteTech LLC **PDF** documents, not raw Markdown. After drafting the artifact text (optionally starting from a catalog template), render it with the bundled generator:
+Artifacts from this skill are delivered as branded CompleteTech LLC **PDF** documents, not raw Markdown. The renderer emits the PDF (and prints the Markdown) in **one command**, using the same reportlab branding engine as the contract skill:
 
 ```bash
 pip install -r requirements.txt
-python3 scripts/render_pdf.py \
-  --markdown artifact.md --out artifact.pdf --png artifact.png \
-  --logo assets/logo.png \
+python3 scripts/render_security_review.py --template security-signoff-memo \
+  --out artifact.pdf --png artifact.png \
   --title "Security Signoff Memo" --doc-type "SECURITY REVIEW" \
-  --subtitle "Prepared for <b>Client Name</b>" \
-  --meta "DOCUMENT NO.=SEC-2026-0090" --meta "DATE=2026-05-24"
+  --subtitle "Workflow: <b>Support Email Triage Agent (Pilot)</b>" --meta "MEMO NO.=SEC-2026-0090" --meta "DATE=2026-06-17" \
+  --var client_name="Client Name" --var workflow="support triage"
 ```
 
-`scripts/render_pdf.py` applies the shared CompleteTech branding (logo, cover page, letterhead band, watermark, footer) and supports a Markdown subset: `#`/`##`/`###` headings, paragraphs, `-` bullet lists, tables, `>` callouts, `**bold**`, and `[PAGE_BREAK]`. It requires `reportlab`; the optional `--png` preview montage requires `pypdfium2` and `pillow`. See `assets/examples/` for a rendered example.
+- `--no-pdf` emits Markdown only (the original behavior); `--no-cover` drops the cover page.
+- Already drafted the Markdown yourself? Render it directly: `python3 scripts/render_pdf.py --markdown artifact.md --out artifact.pdf --logo assets/logo.png --title "..."`.
+- The PDF supports a Markdown subset: `#`/`##`/`###` headings, paragraphs, `-` bullets, tables, `>` callouts, `**bold**`, and `[PAGE_BREAK]`. PDF requires `reportlab`; the optional `--png` preview requires `pypdfium2` and `pillow`. See `assets/examples/` for a rendered example.

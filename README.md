@@ -84,18 +84,18 @@ Full-document **branded PDF** rendered from the generated artifact: [example.pdf
 - Conditional GO: one finding must close before the acceptance demonstration.
 - Not a compliance certification, penetration test, or legal approval.
 
-Generate the branded PDF (artifacts are delivered as PDFs, not raw Markdown):
+Generate it in one command (branded PDF + Markdown, like the contract skill):
 
 ```bash
 pip install -r requirements.txt
-# 1) Draft the artifact (optionally start from a catalog template)
-python3 scripts/render_security_review.py --template security-signoff-memo > assets/examples/example.md
-# 2) Render the branded CompleteTech PDF (+ optional PNG preview)
-python3 scripts/render_pdf.py --markdown assets/examples/example.md \
+python3 scripts/render_security_review.py --template security-signoff-memo \
   --out assets/examples/example.pdf --png assets/examples/example.png \
-  --logo assets/logo.png --title "Security Signoff Memo" \
-  --doc-type "SECURITY REVIEW" --subtitle "Workflow: <b>Support Email Triage Agent (Pilot)</b>" --meta "MEMO NO.=SEC-2026-0090" --meta "DATE=2026-06-17" --meta "DECISION=Conditional GO"
+  --markdown-out assets/examples/example.md \
+  --logo assets/logo.png --title "Security Signoff Memo" --doc-type "SECURITY REVIEW" \
+  --subtitle "Workflow: <b>Support Email Triage Agent (Pilot)</b>" --meta "MEMO NO.=SEC-2026-0090" --meta "DATE=2026-06-17"
 ```
+
+The committed `example.{md,pdf,png}` use curated, realistic demonstration data for the Northwind Trading Co. support-triage pilot; pass `--var key=value` to fill template placeholders with your own facts.
 
 ## Brand Notes
 
