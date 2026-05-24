@@ -1,6 +1,14 @@
 # Agentic Security Review Skill
 
+<p align="center">
+  <img src="assets/logo.png" alt="CompleteTech LLC logo" width="260">
+</p>
+
 A CompleteTech LLC Codex skill for creating security, safety, permissions, and production-readiness review artifacts for agentic development workflows.
+
+## About
+
+Part of the CompleteTech LLC agentic services skill library. This skill creates practical review artifacts for permissions, data exposure, credentials, tools, retrieval, external actions, launch risk, rollback, and incident response.
 
 ## Workflow Diagram
 
@@ -52,3 +60,7 @@ Rendered artifacts are drafts. Replace placeholders with verified workflow, data
 ## Brand Notes
 
 Use a direct, concrete, low-hype tone. Present security review as practical risk reduction for bounded agentic workflow implementation: name the access, verify the evidence, protect human approvals, limit permissions, document logs, define rollback, and make launch blockers explicit. Do not claim formal compliance, certification, legal approval, penetration-test completion, production readiness, or guaranteed security unless verified evidence is provided.
+
+## License
+
+Code, templates, and documentation are licensed under the MIT License. CompleteTech LLC names, logos, seals, and brand assets are reserved and are not licensed for reuse except to identify this project. See `LICENSE` and `BRAND_ASSETS.md`.
