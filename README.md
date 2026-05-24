@@ -73,7 +73,7 @@ Rendered artifacts are drafts. Replace placeholders with verified workflow, data
 
 ![Launch blocker review preview](assets/examples/example.png)
 
-Preview converted from generated artifact: [example.md](assets/examples/example.md).
+Full-document preview converted from generated artifact: [example.md](assets/examples/example.md).
 
 **Launch blocker review: External-support reply workflow**
 
