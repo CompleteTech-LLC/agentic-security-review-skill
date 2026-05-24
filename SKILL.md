@@ -1,0 +1,72 @@
+---
+name: agentic-security-review-skill
+description: Create CompleteTech LLC security, safety, permissions, and production-readiness review artifacts for agentic development workflows, including risk intake, tool permissions, secrets handling, data exposure, prompt-injection testing, retrieval trust, approval gates, external actions, audit logging, model/provider configuration, retention, dependency risk, least privilege, launch blockers, rollback, incident response, escalation, red-team results, and security signoff. Use before production launch or whenever tools, data, credentials, integrations, retrieval sources, or external actions change.
+---
+
+# Agentic Security Review Skill
+
+## Purpose
+
+Create practical security review artifacts for CompleteTech LLC agentic development workflows. Use this skill before launch, before granting new access, after material configuration changes, and after incidents or near misses.
+
+## Core Workflow
+
+1. Identify the review event: launch, new tool, sensitive data, external action, retrieval/RAG, credential change, dependency change, incident, or signoff.
+2. Gather verified facts: workflow purpose, users, data classes, tools, permissions, credentials, integrations, retrieval sources, human approvals, logs, deployment path, rollback owner, incident contacts, and known constraints.
+3. Use `references/use-case-decision-table.md` to choose the right review artifact.
+4. Use `references/security-positioning.md` for CompleteTech LLC security language and guardrails.
+5. Use `references/security-catalog.md` for the artifact library.
+6. Keep the review bounded and evidence-based. Do not claim compliance, certification, legal approval, penetration-test completion, production readiness, or guaranteed security unless the user provides verified evidence.
+
+## Artifact Selection Guide
+
+- Starting a new agentic workflow: use `agentic-risk-intake`.
+- Adding a tool or integration: use `tool-permission-inventory`.
+- Handling API keys, tokens, service accounts, or secrets: use `credential-secret-handling-checklist`.
+- Accessing sensitive, client, personal, regulated, or proprietary data: use `data-exposure-review`.
+- Testing prompt injection or tool misuse: use `prompt-injection-test-plan`.
+- Adding retrieval/RAG, indexed docs, websites, or knowledge stores: use `retrieval-source-trust-review`.
+- Reviewing human-in-the-loop controls: use `approval-gate-audit`.
+- Sending emails, creating calendar events, modifying files, posting messages, purchasing, billing, or changing production systems: use `external-action-review`.
+- Needing traceability, audit trails, or operational evidence: use `logging-auditability-review`.
+- Changing model, provider, system prompt, tool runtime, or safety settings: use `model-provider-configuration-review`.
+- Defining storage, deletion, or retention behavior: use `data-retention-review`.
+- Adding packages, services, scripts, or vendor dependencies: use `dependency-supply-chain-review`.
+- Reducing access scope or sandboxing execution: use `sandbox-least-privilege-checklist`.
+- Preparing for launch: use `production-readiness-security-checklist`.
+- Deciding what blocks launch: use `launch-blocker-checklist`.
+- Preparing a backout path: use `rollback-plan`.
+- Responding to a security event or near miss: use `incident-response-plan`.
+- Defining who to contact and when to escalate: use `human-escalation-procedure`.
+- Summarizing adversarial testing: use `red-team-test-report`.
+- Recording final approval status: use `security-signoff-memo`.
+
+When several artifacts fit, start with the artifact closest to the change or decision being reviewed, then add supporting artifacts only when they materially reduce risk.
+
+## Quality Rules
+
+- Use verified contact routing. Do not invent client, security, legal, billing, support, or approval email addresses; ask for the right address or use `TBD`.
+- Preserve least privilege: name each tool, permission, credential, data class, and external action that is actually needed.
+- Protect human approval gates for irreversible actions, client-facing communication, payments, data export/deletion, production changes, and material business decisions.
+- Separate facts from recommendations. Label unknowns, assumptions, residual risks, blockers, and owner decisions.
+- Recommend technical escalation when secrets may be exposed, logs are missing, sandboxing is weak, prompt injection can trigger tools, approval gates are bypassed, production rollback is unclear, or sensitive data flows are not understood.
+- Recommend client or human approval before launch, before expanding permissions, before connecting client systems, before sending external communications, and before closing incident follow-up.
+
+## Resource Guide
+
+- `references/security-positioning.md`: load for CompleteTech LLC review language and boundaries.
+- `references/use-case-decision-table.md`: load when choosing a security review artifact.
+- `references/security-lifecycle.md`: load for review flow from intake through launch and post-incident follow-up.
+- `references/security-catalog.md`: load for the reusable artifact templates.
+- `references/template-index.json`: machine-readable artifact metadata used by the renderer.
+- `scripts/render_security_review.py`: list security artifacts or render a draft with placeholders.
+
+## Renderer
+
+```bash
+python3 scripts/render_security_review.py --list
+python3 scripts/render_security_review.py --stage launch --list
+python3 scripts/render_security_review.py --template agentic-risk-intake --var client_name=Acme --var workflow="support triage agent"
+```
+
+Rendered artifacts are drafts. Replace placeholders with verified project facts before sending, storing, or relying on them.
