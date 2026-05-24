@@ -17,8 +17,8 @@ Part of the CompleteTech LLC agentic services skill library. This skill creates 
 - Homepage: https://github.com/CompleteTech-LLC/agentic-security-review-skill
 - README: https://github.com/CompleteTech-LLC/agentic-security-review-skill#readme
 - Runtime binaries: `python3`
-- Python packages: none
-- Intended registry/discovery tags: `latest`, `complete-tech`, `codex-skill`, `agentic-development`, `agentic-workflows`, `security-review`, `permissions`, `launch-readiness`
+- Python packages: `reportlab>=4.0` (optional PNG preview: `pypdfium2`, `pillow`)
+- Intended registry/discovery tags: `latest`, `complete-tech`, `codex-skill`, `agentic-development`, `agentic-workflows`, `security-review`, `permissions`, `launch-readiness`, `pdf`, `pdf-generator`
 - License: repository code, templates, and documentation use MIT; ClawHub publishing is intentionally skipped for now.
 - Brand assets: CompleteTech LLC names, logos, seals, and brand assets are reserved; see `BRAND_ASSETS.md`.
 
@@ -56,6 +56,8 @@ flowchart LR
 - `references/security-positioning.md` - CompleteTech LLC security language and guardrails.
 - `references/template-index.json` - machine-readable artifact metadata.
 - `scripts/render_security_review.py` - deterministic artifact listing and rendering helper.
+- `scripts/render_pdf.py` - branded CompleteTech PDF generator (Markdown -> PDF + optional PNG preview).
+- `requirements.txt` - Python dependencies for branded PDF rendering.
 
 ## Quick Start
 
@@ -71,29 +73,29 @@ Rendered artifacts are drafts. Replace placeholders with verified workflow, data
 
 ## Example
 
-![Launch blocker review preview](assets/examples/example.png)
+![Security Signoff Memo preview](assets/examples/example.png)
 
-Full-document preview converted from generated artifact: [example.md](assets/examples/example.md).
+Full-document **branded PDF** rendered from the generated artifact: [example.pdf](assets/examples/example.pdf). Markdown source: [example.md](assets/examples/example.md).
 
-**Launch blocker review: External-support reply workflow**
+**Security signoff memo: Northwind Trading Co. — pilot launch decision**
+
+- Scope, least-privilege permissions, and data classes for the sandbox pilot.
+- Risk findings with severity and status (prompt injection mitigated; PII-in-logs open).
+- Conditional GO: one finding must close before the acceptance demonstration.
+- Not a compliance certification, penetration test, or legal approval.
+
+Generate the branded PDF (artifacts are delivered as PDFs, not raw Markdown):
 
 ```bash
-python3 scripts/render_security_review.py \
-  --template launch-blocker-checklist \
-  --var client_name="Northstar Support" \
-  --var workflow="support triage agent" \
-  --var external_action="drafting customer-facing replies for human approval" \
-  --var data_classification="customer support tickets with account context" \
-  --var approval_gate="support lead approval required before send" \
-  > assets/examples/example.md
+pip install -r requirements.txt
+# 1) Draft the artifact (optionally start from a catalog template)
+python3 scripts/render_security_review.py --template security-signoff-memo > assets/examples/example.md
+# 2) Render the branded CompleteTech PDF (+ optional PNG preview)
+python3 scripts/render_pdf.py --markdown assets/examples/example.md \
+  --out assets/examples/example.pdf --png assets/examples/example.png \
+  --logo assets/logo.png --title "Security Signoff Memo" \
+  --doc-type "SECURITY REVIEW" --subtitle "Workflow: <b>Support Email Triage Agent (Pilot)</b>" --meta "MEMO NO.=SEC-2026-0090" --meta "DATE=2026-06-17" --meta "DECISION=Conditional GO"
 ```
-
-Example review outcome:
-
-- Launch blocker: unresolved retention policy for ticket excerpts.
-- Required approval: named support lead must approve external replies before send.
-- Residual risk: prompt-injection attempts in customer-provided text require evaluator examples and reviewer training.
-- Handoff: delivery can continue on internal testing; production launch waits for blocker resolution.
 
 ## Brand Notes
 
