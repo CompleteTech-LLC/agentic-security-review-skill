@@ -10,6 +10,18 @@ A CompleteTech LLC Codex skill for creating security, safety, permissions, and p
 
 Part of the CompleteTech LLC agentic services skill library. This skill creates practical review artifacts for permissions, data exposure, credentials, tools, retrieval, external actions, launch risk, rollback, and incident response.
 
+## OpenClaw / ClawHub Metadata
+
+- Skill key: `agentic-security-review-skill`
+- Version-ready metadata: `1.0.0`
+- Homepage: https://github.com/CompleteTech-LLC/agentic-security-review-skill
+- README: https://github.com/CompleteTech-LLC/agentic-security-review-skill#readme
+- Runtime binaries: `python3`
+- Python packages: none
+- Intended registry/discovery tags: `latest`, `complete-tech`, `codex-skill`, `agentic-development`, `agentic-workflows`, `security-review`, `permissions`, `launch-readiness`
+- License: repository code, templates, and documentation use MIT; ClawHub publishing is intentionally skipped for now.
+- Brand assets: CompleteTech LLC names, logos, seals, and brand assets are reserved; see `BRAND_ASSETS.md`.
+
 ## Workflow Diagram
 
 ```mermaid
