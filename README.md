@@ -73,6 +73,8 @@ Rendered artifacts are drafts. Replace placeholders with verified workflow, data
 
 ![Launch blocker review preview](assets/examples/example.png)
 
+Preview converted from generated artifact: [example.md](assets/examples/example.md).
+
 **Launch blocker review: External-support reply workflow**
 
 ```bash
@@ -82,7 +84,8 @@ python3 scripts/render_security_review.py \
   --var workflow="support triage agent" \
   --var external_action="drafting customer-facing replies for human approval" \
   --var data_classification="customer support tickets with account context" \
-  --var approval_gate="support lead approval required before send"
+  --var approval_gate="support lead approval required before send" \
+  > assets/examples/example.md
 ```
 
 Example review outcome:
