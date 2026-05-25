@@ -75,7 +75,7 @@ Rendered artifacts are drafts. Replace placeholders with verified workflow, data
 
 ![Security Signoff Memo preview](assets/examples/example.png)
 
-Full-document **branded PDF** rendered from the generated artifact: [example.pdf](assets/examples/example.pdf). Markdown source: [example.md](assets/examples/example.md).
+Example files: [Markdown](assets/examples/example.md) · [PDF](assets/examples/example.pdf) · [DOCX](assets/examples/example.docx).
 
 **Security signoff memo: Northwind Trading Co. — pilot launch decision**
 
