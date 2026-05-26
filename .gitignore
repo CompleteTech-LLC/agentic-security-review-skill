@@ -7,3 +7,19 @@ venv/
 .env.*
 !/.env.example
 output/
+
+# Shared skill layout ignores
+*$py.class
+Thumbs.db
+desktop.ini
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+env/
+ENV/
+!.env.example
+secrets.json
+*_secret.ini
+*_local.ini
+preview/
+*.tmp
