@@ -4,4 +4,4 @@ interface:
   default_prompt: "Use $agentic-security-review-skill to choose and draft the right security review artifact for an agentic development workflow."
 
 policy:
-  allow_implicit_invocation: true
+  allow_implicit_invocation: false

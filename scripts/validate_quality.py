@@ -91,8 +91,6 @@ def parse_structured_files() -> None:
 def mermaid_command() -> list[str] | None:
     if shutil.which("mmdc"):
         return ["mmdc"]
-    if shutil.which("npx"):
-        return ["npx", "--yes", "@mermaid-js/mermaid-cli"]
     return None
 
 
@@ -103,7 +101,7 @@ def validate_mermaid(skip: bool) -> None:
         return
     cmd = mermaid_command()
     if skip or cmd is None:
-        reason = "requested" if skip else "mmdc/npx not available"
+        reason = "requested" if skip else "mmdc not available"
         print(f"mermaid skipped: {reason}")
         return
     with tempfile.TemporaryDirectory(prefix="skill-mermaid-") as tmp:
@@ -114,21 +112,7 @@ def validate_mermaid(skip: bool) -> None:
 
 
 def smoke_generators() -> None:
-    generator_commands = {
-        "generate_certificate.py": ["--config", "config.ini", "examples/northwind_workshop.ini", "--out", "{tmp}/certificate.pdf"],
-        "generate_contract.py": [
-            "--config", "config.ini", "examples/northwind_support_triage.ini", "--out", "{tmp}/contract.pdf",
-            "--markdown-out", "{tmp}/contract.md", "--no-envelope",
-        ],
-        "generate_envelope.py": ["--config", "config.ini", "examples/northwind_address.ini", "--out", "{tmp}/envelope.pdf"],
-    }
-    with tempfile.TemporaryDirectory(prefix="skill-generator-") as tmp:
-        for path in sorted(ROOT.glob("generate_*.py")):
-            run([sys.executable, str(path), "--help"])
-            args = generator_commands.get(path.name)
-            if args:
-                run([sys.executable, str(path), *[arg.format(tmp=tmp) for arg in args]])
-    print("generator smoke ok")
+    print("generator smoke skipped: security review skill has no generate_*.py entry points")
 
 
 def smoke_catalog_renderers() -> None:
@@ -142,9 +126,8 @@ def smoke_catalog_renderers() -> None:
         templates = json.loads(index_path.read_text(encoding="utf-8")).get("templates", [])
         if templates:
             first_template = templates[0].get("id")
-    for path in sorted(scripts_dir.glob("render_*.py")):
-        if path.name == "render_pdf.py":
-            continue
+    path = scripts_dir / "render_security_review.py"
+    if path.exists():
         run([sys.executable, str(path), "--list"])
         if first_template:
             run([sys.executable, str(path), "--template", first_template, "--var", "smoke=value", "--no-pdf"])
@@ -158,10 +141,7 @@ def run_pyright() -> None:
     if shutil.which("pyright"):
         run(["pyright"])
         return
-    if shutil.which("npx"):
-        run(["npx", "--yes", "pyright"])
-        return
-    raise RuntimeError("pyrightconfig.json exists, but pyright/npx is unavailable")
+    raise RuntimeError("pyrightconfig.json exists, but pyright is unavailable")
 
 
 def frontmatter() -> dict[str, Any]:

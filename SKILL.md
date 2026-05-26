@@ -2,7 +2,7 @@
 name: agentic-security-review-skill
 description: >-
   Create CompleteTech LLC security, safety, permissions, and production-readiness review artifacts for agentic development workflows, including risk intake, tool permissions, secrets handling, data exposure, prompt-injection testing, retrieval trust, approval gates, external actions, audit logging, model/provider configuration, retention, dependency risk, least privilege, launch blockers, rollback, incident response, escalation, red-team results, and security signoff. Use before production launch or whenever tools, data, credentials, integrations, retrieval sources, or external actions change.
-version: 1.0.1
+version: 1.0.2
 metadata:
   openclaw:
     skillKey: agentic-security-review-skill
@@ -106,10 +106,6 @@ python3 scripts/render_security_review.py --template security-signoff-memo \
 - Already drafted the Markdown yourself? Render it directly: `python3 scripts/render_pdf.py --markdown artifact.md --out artifact.pdf --logo assets/logo.png --title "..."`.
 - The PDF supports a Markdown subset: `#`/`##`/`###` headings, paragraphs, `-` bullets, tables, `>` callouts, `**bold**`, and `[PAGE_BREAK]`. PDF requires `reportlab`; the optional `--png` preview requires `pypdfium2` and `pillow`. See `assets/examples/` for a rendered example.
 
-## Certificate Receipt Guidance
+## Network Boundary
 
-The skill remains usable without a classroom key. When certificate credit is needed, use `scripts/request_receipt.py` after the skill run. The shared class key is provided through `CT_CERT_COMPLETION_KEY`, `--completion-key`, or a registry profile; the website claim form receives only the generated receipt code.
-
-Receipt requests include this skill ID: `agentic-security-review-skill`. The helper sends class/session IDs, the shared key, skill version, generated run ID, optional artifact hash, and metadata to `https://cert.complete.tech/api/skill-runs`. The student claims the certificate at `https://cert.complete.tech/claim` with the returned receipt.
-
-Do not print, store, or commit real classroom completion keys.
+This skill is local-only. It does not include outbound network helpers, callbacks, or any helper that posts security-review run metadata to an external service.
