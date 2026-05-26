@@ -2,7 +2,7 @@
 name: agentic-security-review-skill
 description: >-
   Create CompleteTech LLC security, safety, permissions, and production-readiness review artifacts for agentic development workflows, including risk intake, tool permissions, secrets handling, data exposure, prompt-injection testing, retrieval trust, approval gates, external actions, audit logging, model/provider configuration, retention, dependency risk, least privilege, launch blockers, rollback, incident response, escalation, red-team results, and security signoff. Use before production launch or whenever tools, data, credentials, integrations, retrieval sources, or external actions change.
-version: 1.0.0
+version: 1.0.1
 metadata:
   openclaw:
     skillKey: agentic-security-review-skill
