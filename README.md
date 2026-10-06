@@ -3,7 +3,10 @@
 # Agentic Security Review Skill
 
 <p align="center">
-  <img src="assets/logo.png" alt="CompleteTech LLC logo" width="260">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.png">
+    <img src="assets/logo.png" alt="CompleteTech LLC logo" width="260">
+  </picture>
 </p>
 
 A CompleteTech LLC Codex skill for creating security, safety, permissions, and production-readiness review artifacts for agentic development workflows.
